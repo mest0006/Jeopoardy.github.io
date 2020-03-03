@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Jeopardy</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="board" class="board">
+    <div class="category">
+      <div class="title">Category Title</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+    </div>
+    <div class="category">
+      <div class="title">Category Title</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+    </div>
+    <div class="category">
+      <div class="title">Category Title</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+      <div class="cell" data-clue="the clue text" data-answer="the clue answer">clue value</div>
+    </div>
+  </div>
+
+
+  <div id="overlay" class="overlay">
+    <div id="clue" class="clue"></div>
+
+    <div class="responses">
+      <div id="answer" class="answer"></div>
+      <button id="close" class="button close">Show Answer</button>
+    </div>
+
+  </div>
+
+  <script src="jeopardy.js"></script>
+</body>
+
+</html>
