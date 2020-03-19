@@ -68,7 +68,7 @@ let $clue = document.getElementById('clue')
 let $cells = document.querySelectorAll(".cell")
 let $responses = document.querySelector('.responses')
 let $answer = document.getElementById('answer')
-let $btnAfter = document.querySelector('.close::after')
+
 
 let cat = categories;
 let board = []
@@ -76,11 +76,11 @@ for (let i = 0, v = cat.length; i < v; i++) {
 
   board.push(`  
     <div class="category">
-    <div class="title"> ${categories[i].title} </div >
-   <div class="cell" data-clue=" ${categories[i].clues[0].text}" data-answer="${categories[i].clues[0].answer}">${categories[i].clues[0].value}</div>
-   <div class="cell" data-clue="${categories[i].clues[1].text}" data-answer="${categories[i].clues[1].answer}"> ${categories[i].clues[1].value}</div>
-   <div class="cell" data-clue="${categories[i].clues[2].text}" data-answer="${categories[i].clues[2].answer}"> ${categories[i].clues[2].value}</div>
- </div >
+    <div class="title"> ${cat[i].title} </div >
+   <div class="cell" data-clue="${cat[i].clues[0].text}" data-answer="${cat[i].clues[0].answer}">${cat[i].clues[0].value}</div>
+   <div class="cell" data-clue="${cat[i].clues[1].text}" data-answer="${cat[i].clues[1].answer}"> ${cat[i].clues[1].value}</div>
+   <div class="cell" data-clue="${cat[i].clues[2].text}" data-answer="${cat[i].clues[2].answer}"> ${cat[i].clues[2].value}</div>
+ </div > 
  
  </div >
  `);
@@ -90,25 +90,35 @@ for (let i = 0, v = cat.length; i < v; i++) {
 }
 
 
-for (let j = 0, p = cat.length; j < p; j++) {
 
-  $board.addEventListener('click', function (e) {
-    if (e.target.classList == 'cell') {
-      $overlay.innerHTML = ` 
-      <div id="overlay" class="overlay show">
-     <div id="clue" class="clue">${cat[j].clues[0].text} </div>
-     <div class="responses">
-       <div id="answer" class="answer">${categories[j].clues[0].answer}</div>
-       <button  id="close" class="button close">Show Answer</button>
-     </div>`
-      $overlay.classList.toggle("overlay");
-
+$board.addEventListener('click', function (e) {
+  if (e.target.classList.contains('cell')) {
+    $overlay.classList.add('show')
+    $answer.classList.remove('show')
+    $clue.textContent = e.target.dataset.clue
+    $answer.textContent = e.target.dataset.answer
+    $button.textContent = 'Show Answer'
+  }
+})
+$button.addEventListener('click', function (e) {
+  if (e.target.classList.contains("button")) {
+    if ($answer.classList.contains('show')) {
+      $answer.classList.remove('show')
+      $overlay.classList.remove('show')
+    }
+    else {
+      $answer.classList.add('show')
+      $button.textContent = "close"
 
     }
-  })
+
+  }
+
+})
 
 
-}
+
+
 
 
 
@@ -116,16 +126,7 @@ for (let j = 0, p = cat.length; j < p; j++) {
 $board.innerHTML = board.join('')
 
 
-$button.addEventListener('click', function (e) {
 
-  $button.classList.toggle(" .close")
-  if ($answer.style.visibility == 'hidden') {
-    $answer.style.visibility = 'visible';
-  } else {
-    $answer.style.visibility = 'hidden';
 
-  }
-
-})
 
 
