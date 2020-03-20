@@ -62,7 +62,7 @@ const categories = [
 ]
 
 let $board = document.getElementById('board')
-let $button = document.getElementById('close')
+let $close = document.getElementById('close')
 let $overlay = document.getElementById('overlay')
 let $clue = document.getElementById('clue')
 let $cells = document.querySelectorAll(".cell")
@@ -71,23 +71,22 @@ let $answer = document.getElementById('answer')
 
 
 let cat = categories;
-let board = []
-for (let i = 0, v = cat.length; i < v; i++) {
-
-  board.push(`  
-    <div class="category">
-    <div class="title"> ${cat[i].title} </div >
-   <div class="cell" data-clue="${cat[i].clues[0].text}" data-answer="${cat[i].clues[0].answer}">${cat[i].clues[0].value}</div>
-   <div class="cell" data-clue="${cat[i].clues[1].text}" data-answer="${cat[i].clues[1].answer}"> ${cat[i].clues[1].value}</div>
-   <div class="cell" data-clue="${cat[i].clues[2].text}" data-answer="${cat[i].clues[2].answer}"> ${cat[i].clues[2].value}</div>
- </div > 
- 
- </div >
- `);
+let boards = []
 
 
+for (const category of categories) {
+  boards.push(`<div class="category">`)
+  boards.push(`<div class="title">${category.title}</div>`)
 
+  for (const clue of category.clues) {
+    boards.push(`<div class="cell" data-clue="${clue.text}" data-answer="${clue.answer}">${clue.value}</div>`)
+  }
+  boards.push(`</div>`)
 }
+
+
+
+
 
 
 
@@ -97,10 +96,10 @@ $board.addEventListener('click', function (e) {
     $answer.classList.remove('show')
     $clue.textContent = e.target.dataset.clue
     $answer.textContent = e.target.dataset.answer
-    $button.textContent = 'Show Answer'
+    $close.textContent = 'Show Answer'
   }
 })
-$button.addEventListener('click', function (e) {
+$close.addEventListener('click', function (e) {
   if (e.target.classList.contains("button")) {
     if ($answer.classList.contains('show')) {
       $answer.classList.remove('show')
@@ -108,7 +107,7 @@ $button.addEventListener('click', function (e) {
     }
     else {
       $answer.classList.add('show')
-      $button.textContent = "close"
+      $close.textContent = "close"
 
     }
 
@@ -123,7 +122,7 @@ $button.addEventListener('click', function (e) {
 
 
 
-$board.innerHTML = board.join('')
+$board.innerHTML = boards.join('')
 
 
 
