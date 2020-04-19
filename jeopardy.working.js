@@ -62,7 +62,7 @@ const categories = [
 ]
 
 let $board = document.getElementById('board')
-let $button = document.getElementById('close')
+let $close = document.getElementById('close')
 let $overlay = document.getElementById('overlay')
 let $clue = document.getElementById('clue')
 let $cells = document.querySelectorAll(".cell")
@@ -71,6 +71,7 @@ let $answer = document.getElementById('answer')
 
 
 let cat = categories;
+<<<<<<< HEAD
 let board = []
 
 for (const category of categories) {
@@ -84,16 +85,37 @@ for (const category of categories) {
 }
 
 
+=======
+let boards = []
+
+
+for (const category of categories) {
+  boards.push(`<div class="category">`)
+  boards.push(`<div class="title">${category.title}</div>`)
+
+  for (const clue of category.clues) {
+    boards.push(`<div class="cell" data-clue="${clue.text}" data-answer="${clue.answer}">${clue.value}</div>`)
+  }
+  boards.push(`</div>`)
+}
+
+
+
+
+
+
+
+>>>>>>> f16052e6ffafa4640d567f8c0f9b4ffb638095f2
 $board.addEventListener('click', function (e) {
   if (e.target.classList.contains('cell')) {
     $overlay.classList.add('show')
     $answer.classList.remove('show')
     $clue.textContent = e.target.dataset.clue
     $answer.textContent = e.target.dataset.answer
-    $button.textContent = 'Show Answer'
+    $close.textContent = 'Show Answer'
   }
 })
-$button.addEventListener('click', function (e) {
+$close.addEventListener('click', function (e) {
   if (e.target.classList.contains("button")) {
     if ($answer.classList.contains('show')) {
       $answer.classList.remove('show')
@@ -101,7 +123,7 @@ $button.addEventListener('click', function (e) {
     }
     else {
       $answer.classList.add('show')
-      $button.textContent = "close"
+      $close.textContent = "close"
 
     }
 
@@ -116,7 +138,7 @@ $button.addEventListener('click', function (e) {
 
 
 
-$board.innerHTML = board.join('')
+$board.innerHTML = boards.join('')
 
 
 
