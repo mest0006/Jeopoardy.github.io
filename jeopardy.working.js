@@ -72,23 +72,16 @@ let $answer = document.getElementById('answer')
 
 let cat = categories;
 let board = []
-for (let i = 0, v = cat.length; i < v; i++) {
 
-  board.push(`  
-    <div class="category">
-    <div class="title"> ${cat[i].title} </div >
-   <div class="cell" data-clue="${cat[i].clues[0].text}" data-answer="${cat[i].clues[0].answer}">${cat[i].clues[0].value}</div>
-   <div class="cell" data-clue="${cat[i].clues[1].text}" data-answer="${cat[i].clues[1].answer}"> ${cat[i].clues[1].value}</div>
-   <div class="cell" data-clue="${cat[i].clues[2].text}" data-answer="${cat[i].clues[2].answer}"> ${cat[i].clues[2].value}</div>
- </div > 
- 
- </div >
- `);
+for (const category of categories) {
+  board.push(`<div class="category">`)
+  board.push(`<div class="title">${category.title}</div>`)
 
-
-
+  for (const clue of category.clues) {
+    board.push(`<div class="cell" data-clue="${clue.text}" data-answer="${clue.answer}">${clue.value}</div>`)
+  }
+  board.push(`</div>`)
 }
-
 
 
 $board.addEventListener('click', function (e) {
