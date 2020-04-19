@@ -98,7 +98,7 @@ for (const category of categories) {
   board.push(`</div>`)
 }
 
-
+ 
 $board.addEventListener('click', function (e) {
   if (e.target.classList.contains('cell')) {
     $overlay.classList.add('show')
