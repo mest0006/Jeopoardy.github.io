@@ -145,3 +145,8 @@ $board.innerHTML = boards.join('')
 
 
 
+
+
+
+
+
