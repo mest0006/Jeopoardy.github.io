@@ -85,7 +85,7 @@ for (const category of categories) {
 }
 
 
-=======
+
 let boards = []
 
 
@@ -105,7 +105,7 @@ for (const category of categories) {
 
 
 
->>>>>>> f16052e6ffafa4640d567f8c0f9b4ffb638095f2
+
 $board.addEventListener('click', function (e) {
   if (e.target.classList.contains('cell')) {
     $overlay.classList.add('show')
